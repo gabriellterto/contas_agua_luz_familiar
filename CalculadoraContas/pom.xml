@@ -31,11 +31,11 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean verify -B
-        working-directory: CalculadoraContas  # 👈 muda aqui
+        working-directory: CalculadoraContas  # 👈 importante!
 
       - name: Upload test results
         if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: CalculadoraContas/target/surefire-reports/  # 👈 e aqui
+          path: CalculadoraContas/target/surefire-reports/  # 👈 caminho ajustado
