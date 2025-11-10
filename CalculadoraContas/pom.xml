@@ -1,41 +1,95 @@
-name: CI
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-on:
-  push:
-    branches: [ "develop", "main" ]
-  pull_request:
-    branches: [ "develop", "main" ]
-  workflow_dispatch:
+  <modelVersion>4.0.0</modelVersion>
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+  <!-- 🏷️ Informações básicas do projeto -->
+  <groupId>com.gabrielterto</groupId>
+  <artifactId>contas-agua-luz-familiar</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+  <name>Contas Água e Luz Familiar</name>
+  <description>Aplicação Java para cálculo automatizado de contas de água e luz familiares.</description>
+  <url>https://github.com/gabriellterto/contas_agua_luz_familiar</url>
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
+  <!-- 🧠 Configurações gerais -->
+  <properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <junit.jupiter.version>5.10.0</junit.jupiter.version>
+  </properties>
 
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-m2
+  <!-- 📦 Dependências -->
+  <dependencies>
 
-      - name: Build with Maven
-        run: mvn clean verify -B
-        working-directory: CalculadoraContas  # 👈 importante!
+    <!-- ✅ Lombok (gera getters/setters e reduz código boilerplate) -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.32</version>
+      <scope>provided</scope>
+    </dependency>
 
-      - name: Upload test results
-        if: success() || failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: CalculadoraContas/target/surefire-reports/  # 👈 caminho ajustado
+    <!-- 🧪 JUnit 5 (testes automatizados) -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <!-- ⚙️ Plugins de build -->
+  <build>
+    <plugins>
+
+      <!-- Compilador Java -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+
+      <!-- Plugin para empacotar o .jar executável -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <!-- Substitua abaixo pelo nome da sua classe principal -->
+              <mainClass>com.gabrielterto.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <!-- Plugin de testes -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>
