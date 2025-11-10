@@ -1,4 +1,4 @@
-﻿package calculadora.agua;
+package calculadora.agua;
 
 public class CalculadoraAgua {
     

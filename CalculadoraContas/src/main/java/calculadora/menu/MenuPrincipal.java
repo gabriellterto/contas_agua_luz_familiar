@@ -1,4 +1,4 @@
-﻿package calculadora.menu;
+package calculadora.menu;
 
 public class MenuPrincipal {
     

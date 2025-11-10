@@ -1,4 +1,4 @@
-﻿package calculadora.luz;
+package calculadora.luz;
 
 public class CalculadoraLuz {
     
