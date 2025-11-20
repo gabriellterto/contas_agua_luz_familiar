@@ -1,10 +1,11 @@
-﻿package calculadora.luz;
+package calculadora.luz;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 public class CalculadoraLuzTest {
+    // Teste para o método calcularValorPorCasa
     @Test
     public void testCalcularValorPorCasa() {
         CalculadoraLuz calculadora = new CalculadoraLuz();

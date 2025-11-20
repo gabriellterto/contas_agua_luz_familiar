@@ -1,10 +1,11 @@
-﻿package calculadora.agua;
+package calculadora.agua;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 public class CalculadoraAguaTest {
+    // Teste para o método calcularValorPorCasa
     @Test
     public void testCalcularValorPorCasa() {
         CalculadoraAgua calculadora = new CalculadoraAgua();
