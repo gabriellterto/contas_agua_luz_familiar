@@ -54,4 +54,18 @@ public class CalculadoraAgua {
             System.out.println("Casa " + (i + 1) + ": R$ " + arredondado);
         }
     }
+
+    // Método auxiliar para testes unitários
+    public List<Float> calcularValorPorCasa(float valorConta, List<Integer> diasPorCasa, int totalDias) {
+        float valorPorDia = valorConta / totalDias;
+
+        List<Float> valorPorCasa = new ArrayList<>();
+
+        for (int diasDaCasa : diasPorCasa) {
+            float valorCasa = diasDaCasa * valorPorDia;
+            valorPorCasa.add(valorCasa);
+        }
+
+        return valorPorCasa;
+    }
 }
