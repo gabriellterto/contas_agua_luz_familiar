@@ -1,6 +1,7 @@
 package calculadora.menu;
 import java.util.Scanner;
 import calculadora.agua.CalculadoraAgua;
+import calculadora.luz.CalculadoraLuz;
 
 public class MenuPrincipal {
     public void iniciar() {
@@ -33,8 +34,8 @@ public class MenuPrincipal {
                 break;
         
             case 2:
-                System.out.print("CALCULO DE LUZ EM DESENVOLVIMENTO....");
-                System.exit(2);
+                CalculadoraLuz calcLuz = new CalculadoraLuz();
+                calcLuz.mostrarResultado(calcLuz.coletarDados());
                 break;
             case 0:
                 System.out.println("-".repeat(30));
